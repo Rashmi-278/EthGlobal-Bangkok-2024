@@ -1,39 +1,120 @@
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and TypeScript
+# Pyth-in-Galaxy
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with TypeScript.
+**"Discover dynamic gradient galaxies with Pyth, the Baby Snake's Spaceship powered by Pyth-Entropy, traveling through the universe of randomness."**
 
-Next.js and chakra-ui have built-in TypeScript declarations, so we'll get autocompletion for their modules straight away.
+---
 
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Provider and theme so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+## Overview
 
-## Deploy your own
+Pyth-in-Galaxy is a whimsical Next.js + Chakra UI project inspired by the Pyth-Entropy service, which provides verifiable random numbers. It brings the story of Pyth, a baby snake exploring the universe in his spaceship powered by Pyth-Entropy. When the API provides data, Pyth successfully reaches a galaxy, represented as a stunning gradient. If the spaceship fails to find the map to a galaxy (API returns a `403`), Pyth continues undeterred, with his resolve symbolized by a friendly snake icon.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-chakra-ui)
+---
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui&project-name=with-chakra-ui&repository-name=with-chakra-ui)
+## Features
 
-## How to use
+- **Dynamic Gradients**: Generate mesmerizing gradients based on verifiable random numbers retrieved from the Pyth-Entropy-powered Fortuna Revelations API.
+- **Error Handling**: Gracefully handles API errors by showing a snake icon, symbolizing Pyth's determination despite obstacles.
+- **Clean UI**: Features a responsive Chakra UI interface, complete with a navigation bar and a shadowed gradient card in the center.
+- **Pyth's Story**: A subtle reminder that, like Pyth, we must keep exploring, no matter the challenges.
 
-### Using `create-next-app`
+---
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Tech Stack
+
+- **[Next.js](https://nextjs.org/)** – Framework for building fast, modern React applications with server-side rendering and static site generation.
+- **[Chakra UI](https://chakra-ui.com/)** – A modern, responsive UI component library.
+- **[TypeScript](https://www.typescriptlang.org/)** – Enhances development with type safety and better tooling.
+- **[Pyth-Entropy](https://pyth.network/)** – Verifiable randomness generator
+
+---
+
+## Installation
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- Node.js (>=16)
+- `pnpm` (preferred) or `npm`
+
+### Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Rashmi-278/EthGlobal-Bangkok-2024
+   cd pyth-in-galaxy
+   ```
+
+2. **Install dependencies**:
+   Using `pnpm`:
+   ```bash
+   pnpm install
+   ```
+
+   Or using `npm`:
+   ```bash
+   pnpm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   pnpm run dev
+   ```
+
+   The app will run at `http://localhost:3000`.
+
+---
+
+## API Endpoint
+
+The app interacts with the Fortuna Revelations API:
 
 ```bash
-npx create-next-app --example with-chakra-ui with-chakra-ui-app
+GET https://fortuna.dourolabs.app/v1/chains/base/revelations/<random_number>
 ```
 
-```bash
-yarn create next-app --example with-chakra-ui with-chakra-ui-app
+### Responses
+
+1. **200 (Success)**:  
+   Pyth reaches a galaxy! The app visualizes this as a gradient.  
+   Example response:
+   ```json
+   {
+     "value": {
+       "encoding": "hex",
+       "data": "aeeaa45fc8ae4dfc2b1ddfae5151d75082ac8be824b5365726d399ba59ac7fd7"
+     }
+   }
+   ```
+
+2. **403 (Error)**:  
+   Pyth's spaceship can't find the map to the galaxy. A snake icon is displayed.  
+   Example response:
+   ```
+   Random value cannot currently be retrieved
+   ```
+
+---
+
+## How It Works
+
+1. **Random Number Generation**: The app periodically generates a random number every 3 seconds and queries the API to fetch galaxy data.
+2. **Gradient Generation**: If the API returns a `200` response, the `data` field (hex-encoded) is used to create a linear gradient representing a galaxy.
+3. **Error Handling**: If the API returns a `403` response, the snake icon (`VscSnake`) is displayed to symbolize Pyth’s resilience.
+4. **UI Presentation**: A centralized card displays the gradient or the snake icon, while the navigation bar features Pyth's logo.
+
 ```
 
-```bash
-pnpm create next-app --example with-chakra-ui with-chakra-ui-app
-```
+## Extending the Project
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- **Add New Galaxy Styles**: Create custom visuals based on `data` beyond gradients.
+- **Pyth's Journey Log**: Keep track of successful and failed galaxy visits.
+- **Animations**: Animate Pyth's spaceship as he travels between galaxies.
 
-## Notes
+---
 
-Chakra has supported Gradients and RTL in `v1.1`. To utilize RTL, [add RTL direction and swap](https://chakra-ui.com/docs/features/rtl-support).
+## License
 
-If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl">` inside `_document.ts`.
+This project is licensed under the MIT License.
+
+---
