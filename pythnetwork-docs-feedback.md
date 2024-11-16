@@ -13,8 +13,6 @@ Pyth has three API Categories
 2. Benchmark
 3. Entropy
 
-![image](https://hackmd.io/_uploads/Hkd82hSMkx.png)
-
 ### 1. Price Feeds
 
 Price Feed set of APIs focus on retrieving and managing price data, including Exponential Moving Averages (EMA) and general price feeds. They also handle updating feeds, parsing updates, and managing related fees and time periods.
