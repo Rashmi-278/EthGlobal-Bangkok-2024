@@ -1,4 +1,5 @@
 import { Flex, Heading } from "@chakra-ui/react";
+import { VscSnake } from "react-icons/vsc";
 
 export const Hero = ({ title }: { title: string }) => (
   <Flex
@@ -8,10 +9,11 @@ export const Hero = ({ title }: { title: string }) => (
     bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
     bgClip="text"
   >
+    <VscSnake size="40px" color="black" />
     <Heading fontSize="6vw">{title}</Heading>
   </Flex>
 );
 
 Hero.defaultProps = {
-  title: "with-pyth-offchain-entropy",
+  title: "with-pyth-entropy",
 };

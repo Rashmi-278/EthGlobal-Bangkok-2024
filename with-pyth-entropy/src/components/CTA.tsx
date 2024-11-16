@@ -17,7 +17,7 @@ export const CTA = () => (
       isExternal
       href="https://github.com/Rashmi-278/EthGlobal-Bangkok-2024"
       variant="outline"
-      colorScheme="green"
+      colorScheme="purple"
       rounded="button"
       flexGrow={3}
       mx={2}
@@ -29,7 +29,7 @@ export const CTA = () => (
       as={ChakraLink}
       href="/pyth"
       variant="solid"
-      colorScheme="green"
+      colorScheme="purple"
       rounded="button"
       flexGrow={1}
       mx={2}

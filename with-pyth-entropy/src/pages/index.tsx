@@ -14,16 +14,24 @@ import { Main } from "../components/Main";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { CTA } from "../components/CTA";
 import { Footer } from "../components/Footer";
+import { VscSnake } from "react-icons/vsc";
+
 
 const Index = () => (
   <Container height="100vh">
     <Hero />
     <Main>
-      <Text color="blue.800" size={'md'}>
-      Discover dynamic gradient galaxies or quirky surprises with Pyth: The Baby Snake traveling the universe
+      <Text color="blue.800" size={'md'} mt={8}>
+      Discover dynamic gradient galaxies or quirky surprises with Pyth, the baby Snake traveling the universe.
       </Text>
 
       <List spacing={3} my={0} color="text">
+        <ListItem>
+          <ListIcon as={CheckCircleIcon} color="green.500" />
+          <ChakraLink isExternal href="https://www.pyth.network/" flexGrow={1} mr={2}>
+            Pyth Network <LinkIcon />
+          </ChakraLink>
+        </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
           <ChakraLink
@@ -41,6 +49,7 @@ const Index = () => (
             Next.js <LinkIcon />
           </ChakraLink>
         </ListItem>
+       
       </List>
     </Main>
 
