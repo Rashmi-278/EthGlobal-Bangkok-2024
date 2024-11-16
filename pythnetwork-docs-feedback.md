@@ -1,21 +1,24 @@
 # Developer Experience with Pyth.Network API's
+###### By: Rashmi V Abbigeri , Twitter: @rashmivabbigeri , Github: @Rashmi-278
 
 ### Abstract 
-Smart contracts which are built upon blockchains open up oppurtunities for a wide range of possible financial tools and mechanisms. Some of which need to consume data from external sources. Pyth Network is an cross-chain publish-subscribe design oracle which sources the price data of digital assets such as Bitcoin/USD and commodities such as Crude oil. 
+Smart contracts which are built upon blockchains open up oppurtunities for a wide range of possible financial tools and mechanisms. Some of which need to consume data from external sources. Pyth Network is an cross-chain publish-subscribe design-type oracle which sources the price data of digital assets such as Bitcoin/USD and commodities such as Crude oil. 
 
-Pyth Network Sources this data from various institutional firms listed here, https://www.pyth.network/publishers
+Pyth.Network Sources this data from various institutional firms, Defi Protocols and platforms listed here, https://www.pyth.network/publishers
 
-They make this data available via API's and Pyth Smart Contracts 
+Pyth.Networks makes this data available via API's and Pyth Smart Contracts.
 
-### Testing the APIs
-Pyth has three API Categories
+#### Testing the APIs
+Pyth has three API Categories,
 1. Price feeds
 2. Benchmark
 3. Entropy
 
+![image](https://hackmd.io/_uploads/Hkd82hSMkx.png)
+
 ### 1. Price Feeds
 
-Price Feed set of APIs focus on retrieving and managing price data, including Exponential Moving Averages (EMA) and general price feeds. They also handle updating feeds, parsing updates, and managing related fees and time periods.
+Price Feed set of APIs focus on retrieving and managing price data, including Exponential Moving Averages (EMA). They also handle updating feeds, parsing updates, and managing related fees and time periods.
 
 Currently only EVM Chains are supported.
 
@@ -36,15 +39,11 @@ The following are the listed API's
     
   
 #### `getEmaPriceNoOlderThan`
-#### `getEmaPriceUnsafe`
-#### `getPriceNoOlderThan`
-#### `getPriceUnsafe`
-#### `getUpdateFee`
 
 **Input:**  
 - **ID**: `Crypto.BTC/USD`  
   (ID Hex: `0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43`)  
-- **Age**: `600` seconds  
+- **Age**: `600 - 1` seconds  
 - **Chain**: `Base`  
 
 **Output:**  
@@ -57,27 +56,34 @@ The following are the listed API's
 }
 ```
 
+- I tested this same input across multiple endpoints mentioned below to check consistency and response handling. 
 
-
-- I tested this same input across multiple endpoints mentioned above to check consistency and response handling.  
+#### `getEmaPriceUnsafe`
+#### `getPriceNoOlderThan`
+#### `getPriceUnsafe`
+#### `getUpdateFee`
 
 
 #### **Observation:**  
-   - Tested a range of `age` values in seconds (from `600` down to `1`). In cases, a **Stale Price** response was received for `age < 60` values.  
+   - Tested a range of `age` values in seconds (from `600` down to `1`). In most cases, a **Stale Price** response was received for `age < 60` values.  
+   - For Example: 4/10 times I'd receive Stale response when the age was below 60 Secs and 9/10 or 10/10 times no error when age was 60 or above 60
+
+This information is helpful to API consumers to calculate the refresh/refetch rate of a price
 
 #### **Commodities on Base:**  
    - Attempting to retrieve commodity prices (e.g., crude oil) on the `Base` chain resulted in a **Price Not Found** error.
+   It seems that all the assets listed do not exist on all the listed chains.
 
 **Feedback:**  
 - It would enhance usability if assets that do not exist on a particular chain could be **delisted** or clearly marked as unsupported for that chain.
-- We could discover and list the reason for **Error: Price Not Found** and add it as a *Disclaimer*
+- We could discover and list the reason for **Error: Price Not Found** for a particular chain.
 
 #### `parsePriceFeedUpdates`
 #### `parsePriceFeedUpdatesUnique`
 #### `updatePriceFeeds`
 #### `updatePriceFeedsIfNecessary`
 
-For priceUpdates, when we need to fetch the price update data from Hermes API:
+For `priceUpdates`, we need to fetch the price update data from Hermes API:
 
 ```
 curl -X 'GET' \
@@ -85,11 +91,11 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
-Feedback:
+**Feedback:**
 It would be helpful if the hex data returned from the API was already prefixed with 0x to align with input parameter format of the `PriceFeedUpdate` API's and avoid extra parsing steps.
 
 
-### 2.  Benchmarks
+### 2. Benchmarks
 
 This set of API's provide historical data
 
@@ -115,11 +121,8 @@ The following TradingView API routes were tested and successfully returned valid
 #### Observation:
 All the above-listed endpoints worked as expected and provided valid responses.
 
-Here’s your input formatted neatly:
 
----
-
-### Price Feeds & Updates
+#### Price Feeds & Updates
 
 #### Endpoints Tested:
 
@@ -154,3 +157,14 @@ Entropy set of API endpoints provide verifiable randomn numbers
 Update documentation from [Fortuna DOURO Labs](https://fortuna.dourolabs.app/docs/) to the API reference section.  
 
 ---
+
+**Sources:**
+* https://cointelegraph.com/learn/articles/what-is-a-blockchain-oracle-and-how-does-it-work
+* https://www.investopedia.com/terms/e/ema.asp
+* https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/ema
+* https://docs.pyth.network/home
+* https://github.com/pyth-network/pyth-examples/
+* https://hermes.pyth.network/docs/#/rest/latest_price_updates
+* https://api-reference.pyth.network/
+* https://docs.pyth.network/entropy
+
