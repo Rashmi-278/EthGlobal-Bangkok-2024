@@ -19,8 +19,8 @@ const Index = () => (
   <Container height="100vh">
     <Hero />
     <Main>
-      <Text color="text">
-        This project demonstrat
+      <Text color="blue.800" size={'md'}>
+      Discover dynamic gradient galaxies or quirky surprises with Pyth: The Baby Snake traveling the universe
       </Text>
 
       <List spacing={3} my={0} color="text">
@@ -46,7 +46,7 @@ const Index = () => (
 
     <DarkModeSwitch />
     <Footer>
-      <Text>Next ❤️ Chakra</Text>
+      <Text>Next ❤️ Chakra ❤️ Pyth.Network</Text>
     </Footer>
     <CTA />
   </Container>
