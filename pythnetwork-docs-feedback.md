@@ -167,4 +167,3 @@ Update documentation from [Fortuna DOURO Labs](https://fortuna.dourolabs.app/doc
 * https://hermes.pyth.network/docs/#/rest/latest_price_updates
 * https://api-reference.pyth.network/
 * https://docs.pyth.network/entropy
-
