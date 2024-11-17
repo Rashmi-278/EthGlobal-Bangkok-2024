@@ -37,10 +37,9 @@ const GradientCard = ({ data }: { data: string }) => {
 
   return (
     <Box
-      w="400px"
-      h="400px"
+      w="100vw"
+      h="90vh"
       bgGradient={`linear(to-br, ${color1}, ${color2})`}
-      borderRadius="lg"
       boxShadow="xl"
       display="flex"
       justifyContent="center"
@@ -76,7 +75,7 @@ const RevelationPage = () => {
       <Flex
         as="nav"
         w="full"
-        h="80px"
+        h="10vh"
         bg="gray.800"
         color="white"
         align="center"
